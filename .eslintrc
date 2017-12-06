@@ -1,9 +1,17 @@
 {
-  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb",
+    "plugin:flowtype/recommended"
+  ],
+  "plugins": [
+    "flowtype"
+  ],
   "rules": {
+    "arrow-body-style": "off",
     "indent": [ 2, 4 ],
     "react/jsx-indent": [ 2, 4 ],
     "react/jsx-indent-props": [ 2, 4 ],
-    "react/jsx-filename-extension": 0,
+    "react/jsx-filename-extension": 0
   }
 }
