@@ -32,6 +32,10 @@ export class SignForm extends Component {
         formType: PropTypes.oneOf(['login', 'register']).isRequired,
     };
 
+    /**
+     * initial state
+     * @type {{email: string, password: string}}
+     */
     state = {
         email: '',
         password: '',

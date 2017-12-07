@@ -31,7 +31,7 @@ const SubmitButton = (props) => {
 };
 
 /**
- * @type {{onPressAction}}
+ * @type {{onPress: *, buttonStyle: Object, submitText: string, submitTextStyle: Object}}
  */
 SubmitButton.propTypes = {
     onPress: PropTypes.func.isRequired,
@@ -40,6 +40,9 @@ SubmitButton.propTypes = {
     submitTextStyle: PropTypes.object,
 };
 
+/**
+ * @type {{submitText: string, submitTextStyle: {color: string}, buttonStyle: {paddingLeft: number, paddingRight: number, paddingTop: number, paddingBottom: number, borderRadius: number}}}
+ */
 SubmitButton.defaultProps = {
     submitText: 'Enregistrer',
     submitTextStyle: {

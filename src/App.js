@@ -7,7 +7,6 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { persistStore } from 'redux-persist';
-import { Text } from 'react-native';
 import firebase from 'firebase';
 import store from './store/store';
 import Router from './Router';
