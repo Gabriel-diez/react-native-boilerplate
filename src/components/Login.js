@@ -3,48 +3,65 @@ import { connect } from 'react-redux';
 import {
     View,
     Text,
-    TouchableOpacity,
+    ActivityIndicator,
+    TextInput,
 } from 'react-native';
 import {
-    emailChanged,
-    passwordChanged,
     loginUser,
-    setUpForgotPasswordPage
-} from '../../actions';
+} from '../actions/index';
 import SubmitButton from './SubmitButton';
 
-export class LoginForm extends Component {
+const styles = {
+    textInput: {
+        height: 40,
+        borderColor: 'grey',
+        borderWidth: 1,
+        marginTop: 10,
+    },
+};
 
-    onEmailChange(text) {
-        this.props.emailChanged(text);
-    }
-
-    onPasswordChange(text) {
-        this.props.passwordChanged(text);
-    }
-
-    onButtonPress = () => {
-        const { email, password } = this.props;
-
-        this.props.loginUser({ email, password });
+export class Login extends Component {
+    state = {
+        email: '',
+        password: '',
     };
 
-    onPasswordForgotPress() {
-        this.props.setUpForgotPasswordPage();
-    }
+    onEmailChange = (email) => {
+        this.setState({
+            email,
+        });
+    };
+
+    onPasswordChange = (password) => {
+        this.setState({
+            password,
+        });
+    };
+
+    onButtonPress = () => {
+        const {
+            email,
+            password,
+        } = this.state;
+
+        this.props.loginUser({
+            email,
+            password,
+        });
+    };
 
     renderButton() {
         if (this.props.loading) {
             return (
-                <View style={styles.spinner}>
-                    <Spinner />
+                <View>
+                    <ActivityIndicator />
                 </View>
             );
         }
 
         return (
             <SubmitButton
-                onPressAction={this.onButtonPress}
+                onPress={this.onButtonPress}
                 submitText="Se connecter"
             />
         );
@@ -52,40 +69,28 @@ export class LoginForm extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <List>
-                    <ListItem>
-                        <InputGroup>
-                            <Input
-                                style={styles.input}
-                                placeholderTextColor="#9e9e9e"
-                                placeholder="hello@klapps.fr"
-                                onChangeText={this.onEmailChange.bind(this)}
-                                value={this.props.email}
-                            />
-                        </InputGroup>
-                    </ListItem>
-                    <ListItem>
-                        <InputGroup>
-                            <Input
-                                style={styles.input}
-                                placeholderTextColor="#999"
-                                secureTextEntry
-                                placeholder="password"
-                                onChangeText={this.onPasswordChange.bind(this)}
-                                value={this.props.password}
-                            />
-                        </InputGroup>
-                    </ListItem>
-                    <TouchableOpacity
-                        style={styles.passwordForgetButton}
-                        onPress={this.onPasswordForgotPress.bind(this)}
-                    >
-                        <Text style={styles.passwordForget}>Mot de passe oublié ?</Text>
-                    </TouchableOpacity>
-                </List>
+            <View style={{ flex: 1, justifyContent: 'center', margin: 10 }}>
+                <Text style={{ alignSelf: 'center' }}>
+                    Connexion
+                </Text>
+                <View>
+                    <TextInput
+                        style={styles.textInput}
+                        onChangeText={this.onEmailChange}
+                        placeholder="Email"
+                        value={this.state.email}
+                    />
 
-                <Text style={styles.errorTextStyle} >
+                    <TextInput
+                        style={styles.textInput}
+                        secureTextEntry
+                        placeholder="Password"
+                        onChangeText={this.onPasswordChange}
+                        value={this.state.password}
+                    />
+                </View>
+
+                <Text>
                     {this.props.error}
                 </Text>
                 {this.renderButton()}
@@ -96,10 +101,10 @@ export class LoginForm extends Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-    const { email, password, error, loading } = auth;
-    return { email, password, error, loading };
+    const { error, loading } = auth;
+    return { error, loading };
 };
 
 export default connect(mapStateToProps, {
-    loginUser, emailChanged, passwordChanged, setUpForgotPasswordPage
-})(LoginForm);
+    loginUser,
+})(Login);
