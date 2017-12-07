@@ -2,4 +2,4 @@
 import { AppRegistry } from 'react-native';
 import App from './src/App';
 
-AppRegistry.registerComponent('coachingApp', () => App);
+AppRegistry.registerComponent('react-native-boilerplate', () => App);
