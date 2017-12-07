@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {
     loginUser,
+    createUser,
 } from '../actions/index';
 import SubmitButton from './SubmitButton';
 
@@ -56,6 +57,11 @@ export class SignForm extends Component {
 
         if (this.props.formType === 'login') {
             this.props.loginUser({
+                email,
+                password,
+            });
+        } else {
+            this.props.createUser({
                 email,
                 password,
             });
@@ -128,4 +134,5 @@ const mapStateToProps = ({ auth }) => {
 
 export default connect(mapStateToProps, {
     loginUser,
+    createUser,
 })(SignForm);

@@ -19,7 +19,9 @@ const Landing = () => {
                 <Text>Connexion</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => Actions.register()}
+            >
                 <Text>Inscription</Text>
             </TouchableOpacity>
         </View>

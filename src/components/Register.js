@@ -1,13 +1,13 @@
 import React from 'react';
 import SignForm from './SignForm';
 
-const Login = () => {
+const Register = () => {
     return (
         <SignForm
-            formType="login"
+            formType="register"
         />
     );
 };
 
-export default Login;
+export default Register;
 
