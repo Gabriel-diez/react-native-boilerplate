@@ -9,7 +9,7 @@ import {
 import { Actions } from 'react-native-router-flux';
 import firebase from 'firebase';
 
-class AuthChecker extends Component {
+export default class AuthChecker extends Component {
     componentWillMount() {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
@@ -30,5 +30,3 @@ class AuthChecker extends Component {
         );
     }
 }
-
-export default AuthChecker;

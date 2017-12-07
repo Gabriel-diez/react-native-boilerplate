@@ -1,7 +1,13 @@
-import { combineReducers } from 'redux';
+import { persistCombineReducers } from 'redux-persist';
+import storage from 'redux-persist/es/storage';
 import AuthReducer from './AuthReducer';
 
-const appReducer = combineReducers({
+const config = {
+    key: 'root',
+    storage,
+};
+
+const appReducer = persistCombineReducers(config, {
     auth: AuthReducer,
 });
 
