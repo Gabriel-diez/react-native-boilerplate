@@ -1,9 +1,16 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
     Text,
     TouchableOpacity,
 } from 'react-native';
+
+type Props = {
+    onPress: Object,
+    buttonStyle?: Object,
+    submitText?: string,
+    submitTextStyle?: Object,
+}
 
 /**
  * Return <SubmitButton>
@@ -11,7 +18,7 @@ import {
  * @returns {XML}
  * @constructor
  */
-const SubmitButton = (props) => {
+const SubmitButton = (props: Props) => {
     return (
         <TouchableOpacity
             style={{
@@ -28,16 +35,6 @@ const SubmitButton = (props) => {
             </Text>
         </TouchableOpacity>
     );
-};
-
-/**
- * @type {{onPress: *, buttonStyle: Object, submitText: string, submitTextStyle: Object}}
- */
-SubmitButton.propTypes = {
-    onPress: PropTypes.func.isRequired,
-    buttonStyle: PropTypes.object,
-    submitText: PropTypes.string,
-    submitTextStyle: PropTypes.object,
 };
 
 /**

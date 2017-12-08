@@ -28,11 +28,16 @@ const styles = {
     },
 };
 
-export class SignForm extends Component {
-    static propTypes = {
-        formType: PropTypes.oneOf(['login', 'register']).isRequired,
-    };
+type Props = {
+    formType: 'login' | 'register'
+};
 
+type State = {
+    email: string,
+    password: string,
+};
+
+export class SignForm extends Component<Props, State> {
     /**
      * initial state
      * @type {{email: string, password: string}}
@@ -42,13 +47,13 @@ export class SignForm extends Component {
         password: '',
     };
 
-    onEmailChange = (email) => {
+    onEmailChange = (email: string) => {
         this.setState({
             email,
         });
     };
 
-    onPasswordChange = (password) => {
+    onPasswordChange = (password: string) => {
         this.setState({
             password,
         });
