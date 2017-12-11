@@ -31,7 +31,7 @@ export default (state: State = INITIAL_STATE, action: Object): State => {
     case CREATE_USER:
         return { ...state, loading: true, error: '' };
     case CREATE_USER_SUCCESS:
-        return { ...state, loading: false, error: '' };
+        return { user: action.payload, loading: false, error: '' };
     case CREATE_USER_FAIL:
         return { ...state, error: action.payload, loading: false };
     default:

@@ -57,19 +57,19 @@ const createUserFail = (dispatch, error) => {
     let errorMessage;
     switch (error.code) {
     case 'auth/email-already-in-use':
-        errorMessage = 'Email déja utilisé';
+        errorMessage = 'Email already in use';
         break;
     case 'auth/invalid-email':
-        errorMessage = 'Email invalide';
+        errorMessage = 'Invalid email';
         break;
     case 'auth/operation-not-allowed':
-        errorMessage = 'Opération non permise';
+        errorMessage = 'Operation not allowed';
         break;
     case 'auth/weak-password':
-        errorMessage = 'Le mot de passe doit avoir au minimum 6 caractères';
+        errorMessage = 'Password must have 6 minimum characters';
         break;
     default:
-        errorMessage = 'Une erreur est survenue';
+        errorMessage = 'An error occured';
         break;
     }
     dispatch({

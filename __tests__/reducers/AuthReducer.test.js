@@ -26,8 +26,8 @@ describe('AuthReducer', () => {
     });
 
     it('Create user fail action', () => {
-        const action = { type: CREATE_USER_FAIL, payload: 'auth/email-already-in-use' };
-        expect(AuthReducer(undefined, action)).toEqual({ ...initialState, loading: false, error: 'Email already use' });
+        const action = { type: CREATE_USER_FAIL, payload: 'Email already in use' };
+        expect(AuthReducer(undefined, action)).toEqual({ ...initialState, loading: false, error: 'Email already in use' });
     });
 
     it('Login user action', () => {
