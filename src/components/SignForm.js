@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import {
     View,
     Text,
@@ -29,7 +28,7 @@ const styles = {
 };
 
 type Props = {
-    formType: 'login' | 'register'
+    formType: 'login' | 'register',
 };
 
 type State = {

@@ -25,13 +25,13 @@ export default (state: State = INITIAL_STATE, action: Object): State => {
     case LOGIN_USER:
         return { ...state, loading: true, error: '' };
     case LOGIN_SUCCESS:
-        return { ...state, user: action.payload, loading: false };
+        return { user: action.payload, loading: false, error: '' };
     case LOGIN_FAIL:
-        return { ...state, error: 'Identifiants incorrects', loading: false };
+        return { ...state, error: 'Email or password invalid', loading: false };
     case CREATE_USER:
         return { ...state, loading: true, error: '' };
     case CREATE_USER_SUCCESS:
-        return { ...state, loading: false };
+        return { ...state, loading: false, error: '' };
     case CREATE_USER_FAIL:
         return { ...state, error: action.payload, loading: false };
     default:

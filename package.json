@@ -33,6 +33,10 @@
     "react-test-renderer": "16.0.0"
   },
   "jest": {
-    "preset": "react-native"
+    "verbose": true,
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "/node_modules//"
+    ]
   }
 }

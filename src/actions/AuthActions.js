@@ -19,7 +19,6 @@ const loginUserSuccess = (dispatch, user) => {
         type: LOGIN_SUCCESS,
         payload: user,
     });
-
     Actions.main({ type: 'reset' });
 };
 
@@ -57,19 +56,21 @@ export const loginUser = ({ email, password }) => {
 const createUserFail = (dispatch, error) => {
     let errorMessage;
     switch (error.code) {
-        case 'auth/email-already-in-use':
-            errorMessage = 'Email déja utilisé';
-            break;
-        case 'auth/invalid-email':
-            errorMessage = 'Email invalide';
-            break;
-        case 'auth/operation-not-allowed':
-            errorMessage = 'Opération non permise';
-            break;
-        case 'auth/weak-password':
-            errorMessage = 'Le mot de passe doit avoir au minimum 6 caractères';
-            break;
-        default:
+    case 'auth/email-already-in-use':
+        errorMessage = 'Email déja utilisé';
+        break;
+    case 'auth/invalid-email':
+        errorMessage = 'Email invalide';
+        break;
+    case 'auth/operation-not-allowed':
+        errorMessage = 'Opération non permise';
+        break;
+    case 'auth/weak-password':
+        errorMessage = 'Le mot de passe doit avoir au minimum 6 caractères';
+        break;
+    default:
+        errorMessage = 'Une erreur est survenue';
+        break;
     }
     dispatch({
         type: CREATE_USER_FAIL,
@@ -81,9 +82,10 @@ const createUserFail = (dispatch, error) => {
  * Redirect user to main
  * @param dispatch
  */
-const createUserSuccess = (dispatch) => {
+const createUserSuccess = (dispatch, user) => {
     dispatch({
         type: CREATE_USER_SUCCESS,
+        payload: user,
     });
     Actions.main({ type: 'reset' });
 };
@@ -103,7 +105,7 @@ export const createUser = ({ email, password }) => {
                 const { currentUser } = firebase.auth();
                 firebase.database().ref(`/users/${currentUser.uid}/email`)
                     .update({ userEmail })
-                    .then(() => createUserSuccess(dispatch));
+                    .then(() => createUserSuccess(dispatch, currentUser));
             })
             .catch(error => createUserFail(dispatch, error));
     };
